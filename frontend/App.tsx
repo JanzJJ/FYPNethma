@@ -7,6 +7,7 @@ import LoginView from './components/LoginView';
 import { auth } from './services/firebaseConfig';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { ReportStep, ReportData, View, AnalysisResult, StrayDog, NewsItem, EventItem } from './types';
+import { API_ENDPOINTS } from './config/api';
 
 // Mock geolocation data for initial map state
 const DEFAULT_CENTER: [number, number] = [20.4856, 79.3702];
@@ -230,7 +231,7 @@ const App: React.FC = () => {
 
     try {
       console.log("Fetching prediction from backend...");
-      const response = await fetch('http://127.0.0.1:5001/predict', {
+      const response = await fetch(API_ENDPOINTS.PREDICT, {
         method: 'POST',
         body: formData,
       });
